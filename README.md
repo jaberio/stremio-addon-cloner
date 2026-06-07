@@ -43,8 +43,6 @@ Open [http://localhost:3000](http://localhost:3000).
 
 ## 🎨 Design
 
-Inspired by [NVIDIA Build](https://build.nvidia.com/):
-
 - Ultra-dark background with ambient gradient mesh
 - CSS custom properties for all colors — zero hardcoded values
 - Glassmorphism and backdrop blur effects
