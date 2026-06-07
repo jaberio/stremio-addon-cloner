@@ -23,17 +23,6 @@ const Footer = () => {
                     </Link>
                 </p>
 
-                <p className="flex items-center justify-center gap-1.5">
-                    <Link
-                        href="https://torbox.app/subscription?referral=916cba88-0186-4577-b449-0a5d7f820185"
-                        target="_blank"
-                        className="transition-colors hover:underline"
-                        style={{ color: "var(--text-secondary)" }}
-                    >
-                        Torbox referral link
-                    </Link>
-                </p>
-
                 <p style={{ color: "var(--text-muted)" }}>
                     Originally created by{" "}
                     <a

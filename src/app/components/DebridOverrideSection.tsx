@@ -1,5 +1,5 @@
 "use client";
-import { ExternalLink, Key, X } from "lucide-react";
+import { Key, X } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Account } from "../types/accounts";
 import { DEBRID_OPTIONS, SUPPORTED_ADDONS_DEBRID_OVERRIDE } from "../utils/debridOptions";
@@ -71,20 +71,6 @@ export default function DebridOverrideSection({ account, index, onChange }: Debr
                     </div>
                 )}
             </div>
-
-            {/* Torbox referral link */}
-            {account.debrid_type === "torbox" && (
-                <a
-                    href="https://torbox.app/subscription?referral=916cba88-0186-4577-b449-0a5d7f820185"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-sm underline flex items-center gap-1 hover:opacity-80 transition-opacity"
-                    style={{ color: "var(--accent-primary)" }}
-                >
-                    <ExternalLink className="w-3.5 h-3.5" />
-                    Support me by using my Torbox referral link
-                </a>
-            )}
 
             {/* Supported Addons Modal */}
             {showSupportedModal && (
