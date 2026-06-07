@@ -1,0 +1,326 @@
+@import "tailwindcss";
+
+/* ========================================
+   Design System — NVIDIA Build–Inspired
+   Ultra-dark, clean, premium look.
+   All values through CSS vars — zero hardcoding.
+   ======================================== */
+
+:root {
+  /* --- Page & Surface (deep blacks like NVIDIA) --- */
+  --bg-page: #0a0a0a;
+  --bg-page-alt: #050505;
+  --bg-surface: rgba(18, 18, 18, 0.65);
+  --bg-surface-solid: #121212;
+  --bg-elevated: rgba(26, 26, 26, 0.8);
+  --bg-input: rgba(30, 30, 30, 0.9);
+  --bg-input-focus: rgba(38, 38, 38, 1);
+  --bg-card: rgba(20, 20, 20, 0.7);
+
+  /* --- Border --- */
+  --border-subtle: rgba(255, 255, 255, 0.04);
+  --border-default: rgba(255, 255, 255, 0.08);
+  --border-strong: rgba(255, 255, 255, 0.14);
+  --border-focus: rgba(118, 185, 71, 0.5);
+  --border-accent: rgba(118, 185, 71, 0.2);
+
+  /* --- Text --- */
+  --text-primary: #f0f0f0;
+  --text-secondary: #a0a0a0;
+  --text-muted: #666666;
+  --text-placeholder: #4a4a4a;
+
+  /* --- Accent / Brand (NVIDIA green-inspired) --- */
+  --accent-primary: #76b947;
+  --accent-primary-hover: #8bcb5a;
+  --accent-glow: rgba(118, 185, 71, 0.15);
+  --accent-subtle: rgba(118, 185, 71, 0.08);
+
+  /* --- Semantic Colors --- */
+  --color-success: #76b947;
+  --color-success-hover: #8bcb5a;
+  --color-success-glow: rgba(118, 185, 71, 0.2);
+  --color-success-subtle: rgba(118, 185, 71, 0.08);
+
+  --color-danger: #ef4444;
+  --color-danger-hover: #dc2626;
+  --color-danger-subtle: rgba(239, 68, 68, 0.08);
+
+  --color-warning: #f59e0b;
+  --color-warning-subtle: rgba(245, 158, 11, 0.08);
+
+  --color-info: #6366f1;
+  --color-info-hover: #4f46e5;
+
+  /* --- Gradients (NVIDIA-inspired green/cyan mesh) --- */
+  --gradient-header: linear-gradient(135deg, #1a1a1a 0%, #0f0f0f 100%);
+  --gradient-mesh: linear-gradient(80deg, rgba(118, 185, 71, 0.06) 0%, rgba(120, 200, 255, 0.04) 50%, transparent 100%);
+  --gradient-success: linear-gradient(135deg, #76b947 0%, #5a9c34 100%);
+  --gradient-separator: linear-gradient(90deg, transparent 0%, rgba(118, 185, 71, 0.25) 50%, transparent 100%);
+  --gradient-border: linear-gradient(135deg, rgba(118, 185, 71, 0.15) 0%, rgba(120, 200, 255, 0.08) 100%);
+
+  /* --- Shadows --- */
+  --shadow-card: 0 2px 16px rgba(0, 0, 0, 0.4);
+  --shadow-glow: 0 0 20px var(--accent-glow);
+  --shadow-header: 0 1px 0 rgba(255, 255, 255, 0.04);
+  --shadow-modal: 0 25px 50px rgba(0, 0, 0, 0.6);
+
+  /* --- Radius --- */
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-full: 9999px;
+
+  /* --- Transitions --- */
+  --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-default: 200ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: 300ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@theme inline {
+  --color-background: var(--bg-page);
+  --color-foreground: var(--text-primary);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+/* ========================================
+   Base Styles
+   ======================================== */
+
+body {
+  background: var(--bg-page);
+  color: var(--text-primary);
+  font-family: var(--font-geist-sans, "Inter", system-ui, -apple-system, sans-serif);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ========================================
+   Scrollbar (minimal, NVIDIA-like)
+   ======================================== */
+
+::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-full);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.18);
+}
+
+/* ========================================
+   Glassmorphism Utilities
+   ======================================== */
+
+.glass {
+  background: var(--bg-surface);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--border-subtle);
+}
+
+.glass-strong {
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-default);
+}
+
+.glass-input {
+  background: var(--bg-input);
+  border: 1px solid var(--border-default);
+  color: var(--text-primary);
+  transition: all var(--transition-default);
+}
+
+.glass-input::placeholder {
+  color: var(--text-placeholder);
+}
+
+.glass-input:focus {
+  background: var(--bg-input-focus);
+  border-color: var(--border-focus);
+  box-shadow: 0 0 0 2px var(--accent-glow);
+  outline: none;
+}
+
+/* ========================================
+   Button System
+   ======================================== */
+
+.btn-base {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.375rem;
+  font-weight: 500;
+  border-radius: var(--radius-md);
+  transition: all var(--transition-default);
+  cursor: pointer;
+  user-select: none;
+  border: none;
+  font-size: 0.875rem;
+  line-height: 1;
+}
+
+.btn-base:active:not(:disabled) {
+  transform: scale(0.98);
+}
+
+.btn-base:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.btn-primary {
+  background: var(--accent-primary);
+  color: #000;
+  font-weight: 600;
+}
+
+.btn-primary:hover:not(:disabled) {
+  background: var(--accent-primary-hover);
+  box-shadow: var(--shadow-glow);
+}
+
+.btn-success {
+  background: var(--color-success);
+  color: #000;
+  font-weight: 600;
+}
+
+.btn-success:hover:not(:disabled) {
+  background: var(--color-success-hover);
+  box-shadow: 0 0 20px var(--color-success-glow);
+}
+
+.btn-danger {
+  background: var(--color-danger);
+  color: white;
+}
+
+.btn-danger:hover:not(:disabled) {
+  background: var(--color-danger-hover);
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--text-secondary);
+  border: 1px solid var(--border-default);
+}
+
+.btn-ghost:hover:not(:disabled) {
+  background: var(--bg-elevated);
+  color: var(--text-primary);
+  border-color: var(--border-strong);
+}
+
+/* ========================================
+   Animations
+   ======================================== */
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideInRight {
+  from { opacity: 0; transform: translateX(100%); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.96); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.animate-fade-in {
+  animation: fadeIn var(--transition-slow) ease-out;
+}
+
+.animate-slide-down {
+  animation: slideDown var(--transition-slow) ease-out;
+}
+
+.animate-slide-in-right {
+  animation: slideInRight var(--transition-slow) ease-out;
+}
+
+.animate-scale-in {
+  animation: scaleIn var(--transition-default) ease-out;
+}
+
+/* ========================================
+   Modal
+   ======================================== */
+
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+.modal-card {
+  background: var(--bg-surface-solid);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-modal);
+  animation: scaleIn var(--transition-default) ease-out;
+}
+
+/* ========================================
+   Focus Ring
+   ======================================== */
+
+:focus-visible {
+  outline: 2px solid var(--accent-primary);
+  outline-offset: 2px;
+}
+
+/* ========================================
+   Card interactions
+   ======================================== */
+
+.card-interactive {
+  transition: all var(--transition-default);
+}
+
+.card-interactive:hover {
+  border-color: var(--border-strong);
+}
+
+/* ========================================
+   Account Grid
+   ======================================== */
+
+.accounts-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.75rem;
+}
+
+@media (min-width: 768px) {
+  .accounts-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
